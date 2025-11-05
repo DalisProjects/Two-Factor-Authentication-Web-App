@@ -1,0 +1,45 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
+<div class="bg">
+  <div class="container">
+    
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a routerLink="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <div class="logoheader">
+          <div class="logo">
+            <div style="font-size:x-large;">IDP SYSTEM</div>
+          </div>
+        </div>
+      </a>
+
+
+        
+        <ul class="nav nav-pills">
+        
+          <li class="nav-item">
+            <a routerLink="" class="nav-link active" aria-current="page" >HOME</a>
+          </li>
+
+
+
+      <li class="nav-item">
+        <div class="dropdown">
+          <button class="nav-link active dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            COMPTE
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+            <li *ngIf="!authService.isLoggedIn"><a class="dropdown-item" routerLink="/login"><i class="fas fa-user"></i> Login</a></li>
+            <li *ngIf="!authService.isLoggedIn"><button style="color: #ffcc00" class="dropdown-item" routerLink="/register"><i  class="fas fa-user-plus"></i> Sign Up</button></li>
+            <li *ngIf="authService.isLoggedIn"><button class="dropdown-item" routerLink="/regenerate"><i class="fas fa-sign-out-alt"></i>  Regenerate QR Code</button></li>
+            <li *ngIf="authService.isLoggedIn"><button class="dropdown-item" (click)="authService.logout()"><i class="fas fa-sign-out-alt"></i>  Logout</button></li>
+          </ul>
+        </div>
+    </li>
+
+      </ul>
+    </header>
+  </div>
+</div>
+

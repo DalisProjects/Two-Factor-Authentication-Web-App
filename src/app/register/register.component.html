@@ -1,0 +1,115 @@
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+
+<section  style="background-image: url('https://i.ibb.co/x2jxyMR/background-register.jpg') ;background-size: cover;" margin >
+  <div style="margin-top:  -25px;" class="container" >
+    <div class="row justify-content-center align-items-center">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card-registration" style="border-radius: 15px; padding: 20px;">
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center text-white" style="margin-top: 20px;">Create a New Account</h3>
+
+          <form #r="ngForm" (submit)="register(r)">
+            <!-- Verification Status -->
+            <div *ngIf="verificationAttempted">
+              <div *ngIf="verificationSuccess; else incorrectCode">
+                <p style="color: green;">Your email address has been successfully verified.</p>
+              </div>
+              <ng-template #incorrectCode>
+                <p style="color: rgb(90, 8, 8);">Incorrect code. Please verify the code sent to your email.</p>
+              </ng-template>
+            </div>
+            <div *ngIf="QRCODESUCCESS === true" style="color: green;">2FA has been successfully added to your account.</div>
+            <div *ngIf="QRCODESUCCESS === false" style="color: rgb(90, 8, 8);">Incorrect OTP code. Please try again.</div>
+            <div *ngIf="EmailUsed" class="text-danger" style="color: rgb(90, 8, 8);">This email address is already in use.</div>
+            <div *ngIf="emailError" class="text-danger" style="color: rgb(90, 8, 8);">Invalid email address. Please try again.</div>
+            <div *ngIf="PasswordError" class="text-danger" style="color: rgb(90, 8, 8);">Password must include at least 8 characters, one uppercase letter, one lowercase letter, and one number.</div>
+
+            <br>
+
+            <!-- Form Inputs -->
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <h6 class="mb-2 pb-1 text-white">Full Name: <span style="color:red">*</span></h6>
+                <div class="form-outline">
+                  <input type="text" id="username" class="form-control form-control-lg" style="color: rgb(0, 14, 83)" placeholder="Full Name" required name="username" ngModel />
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-4">
+                <h6 class="mb-2 pb-1 text-white">Email Address: <span style="color:red">*</span></h6>
+                <div class="form-outline">
+                  <input [disabled]="verificationSuccess || showVerificationCodeInput" type="email" id="email" class="form-control form-control-lg" style="color: black" placeholder="Email" required name="email" [(ngModel)]="email" ngModel />
+                  <br>
+                  <input *ngIf="showVerificationCodeInput" type="text" class="form-control" style="color: black" [(ngModel)]="verificationInput" name="verificationInput" ngModel placeholder="Enter verification code">
+                  <button  type="button" style="margin-left: 250px; background-color: #72000486; color:white;" *ngIf="verificationInput.length === 6 && !verificationSuccess;" class="btn btn-lg" (click)="verifyCode()">Verify</button>
+                  <button *ngIf="!verificationSuccess" type="button" class="btn btn-lg" [disabled]="!canSendEmail || email.length < 6" style="background-color: #720004; color: white; margin-top: 10px;" (click)="sendConfirmationEmail()">Send Code</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <h6 class="mb-2 pb-1 text-white">Password: <span style="color:red">*</span></h6>
+                <div class="form-outline">
+                  <input type="password" id="password" class="form-control form-control-lg" style="color: black" placeholder="Password" required name="password" ngModel />
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <h6 class="mb-2 pb-1 text-white">Confirm Password: <span style="color:red">*</span></h6>
+                <div class="form-outline">
+                  <input type="password" id="confirmPassword" class="form-control form-control-lg" style="color: rgb(0, 21, 127)" placeholder="Confirm Password" required name="confirmPassword" [(ngModel)]="confirmPassword" #confirmPasswordInput="ngModel" />
+                  <div *ngIf="confirmPasswordInput.touched && r.value.password !== r.value.confirmPassword" class="text-danger">Passwords do not match.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2FA Section -->
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <h6 class="mb-2 pb-1 text-white">Two-Factor Authentication: <span style="color:red">*</span></h6>
+                <div class="form-outline">
+                  <button type="button" (click)="QRCODE(email)" [disabled]="QRCODESUCCESS === true || !verificationSuccess" class="btn btn-lg btn-outline-light">Generate QR Code</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer and Submit -->
+            <div class="text-white">
+              Already have an account? <a routerLink="/login" style="text-decoration: none; color: #fff; font-weight: bold;">Login</a>
+            </div>
+            <div class="mt-4 pt-2">
+              <button class="btn btn-lg" style="background-color: #720004; color: white;" type="submit" [disabled]="!r.valid || !verificationSuccess || EmailUsed || emailError || PasswordError || QRCODESUCCESS === false || QRCODESUCCESS === null">Sign Up</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Bootstrap Modal for OTP -->
+<div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="authModalLabel" style="color: black; font-weight: bold;" >Two-Factor Authentication</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p style="color: black;">Download 'Google Authenticator' app on your device:</p>
+        <p style="color: black;">Scan this QR code in your Google Authenticator app to link your account to the app:</p>
+        <img [src]="qrCodeImage" alt="QR Code for 2FA" class="img-fluid mb-3" />
+        <div class="form-group mt-3">
+          <label style="color: black;" for="otp">Enter OTP</label>
+          <input style="color: black;" type="text" class="form-control" id="otp" placeholder="Enter the generated OTP Code" [(ngModel)]="otp" name="otp" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="verifyOTP(otp, email)">Verify OTP</button>
+      </div>
+    </div>
+  </div>
+</div>

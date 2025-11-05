@@ -1,0 +1,163 @@
+/* General Body Styles */
+body {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Main Container Styles */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  background-color: transparent;
+    background-size: cover;
+    padding: 0 15px;
+  }
+  
+  /* Card Styles */
+  .card {
+    background: rgba(15, 52, 96, 0.85);
+    color: #e0e1dd;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+    padding: 25px;
+    animation: fadeIn 0.8s ease-in-out;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  /* Title Styles */
+  .card-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #fff;
+  }
+  
+  /* Button Styles */
+  .btn {
+    background-color: #3c9d9b;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+  }
+  
+  .btn:hover {
+    background-color: #51c4c4;
+  }
+  
+  .btn-primary {
+    background-color: #f05454;
+  }
+  
+  .btn-primary:hover {
+    background-color: #ff6f61;
+  }
+  
+  /* Links and Text */
+  a {
+    color: #ffcc00;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Error and Success Messages */
+  .text-danger {
+    color: #d92027;
+  }
+  
+  .text-success {
+    color: #4caf50;
+  }
+  
+  /* Countdown and Verification Input */
+  .countdown {
+    font-size: 1rem;
+    color: #ffcc00;
+  }
+  
+  .verification-input {
+    font-size: 1.1rem;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  /* Fade-in Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Adjustments for Buttons and Links */
+  .d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px; /* Add some margin between input fields and buttons */
+  }
+  
+  .d-flex a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-right: 20px; /* Add spacing between link and button */
+  }
+  
+  .d-flex .btn {
+    width: auto; /* Button should not take up full width */
+    margin-left: auto; /* Push button to the right */
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 10px;
+    }
+  
+    .card {
+      padding: 20px;
+      margin-top: 20px;
+    }
+  
+    .card-title {
+      font-size: 2rem;
+    }
+  
+    .form-control, .btn {
+      font-size: 1rem;
+      height: 45px;
+    }
+  
+    .d-flex {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .d-flex a {
+      margin-bottom: 10px; /* Stack the link above the button */
+    }
+  }
+  

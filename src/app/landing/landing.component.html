@@ -1,0 +1,34 @@
+<div style="margin-top: -25px; background-image: url('https://i.ibb.co/LgVhfbb/background-landing.jpg'); background-size: cover; background-position: center;">
+<div class="container" >
+  <div *ngIf="authService.isLoggedIn" class="card" >
+     <div class="icon">
+      
+       <img src="https://i.ibb.co/Gv907Ng/Poliba-logo.png" alt="Poliba-logo"  />
+     </div>
+     <h1>Welcome!</h1>
+     <p>You are logged in successfully.</p>
+     <div class="welcome-message">
+       <h2>Welcome back, <span>{{ authService.LoggedInUser.name }}</span>!</h2>
+       <p>We're happy to see you again!</p>
+     </div>
+     <button class="btn logout-btn" (click)="authService.logout()">Log Out</button>
+   </div>
+<div *ngIf="!authService.isLoggedIn" class="card" >
+     <div class="icon">
+      <img src="https://i.ibb.co/Gv907Ng/Poliba-logo.png" alt="Poliba-logo"  />
+    </div>
+     <h1>Welcome!</h1>
+     <p>You are not logged in.</p>
+     <div class="welcome-message">
+       <p>
+         Click Here to
+         <a routerLink="/login" style="color: #ffcc00;">Login</a>
+       </p>
+       <p>
+         You don't have an account yet? Click Here to
+         <a routerLink="/register" class="btn link-btn">Create an Account</a>
+       </p>
+     </div>
+   </div>
+ </div>
+ </div>

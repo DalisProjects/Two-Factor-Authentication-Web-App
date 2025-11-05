@@ -1,0 +1,29 @@
+body, html {
+    height: 100%;
+  }
+  
+  
+  header {
+    position: fixed; /* Or adjust as needed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Adjust height if needed */
+    background-color: #fbf6ec; /* Example background color */
+  }
+  
+  .container { /* If you're using a container */
+    width: 100%;
+    padding: 10px;
+  }
+  
+  /* Other styles for header and footer elements as needed */
+  
+  /* Other styles for header and footer elements as needed */
+  /* Styles for screens smaller than or equal to 768px (phones) */
+@media only screen and (max-width: 768px) {
+  .your-component {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}

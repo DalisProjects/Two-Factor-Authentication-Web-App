@@ -1,0 +1,94 @@
+
+header {
+  position: relative; /* Ensure the header contents are positioned relative to the fixed container */
+}
+
+/* Dropdown Button */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #8dadc6b3;
+  opacity: 90%;
+  font-family: 'Montserrat, sans-serif';
+  min-width: 160px;
+  font-size: small;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 8px 0;
+  z-index: 1000;
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: #fbb034;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+/* Dropdown Link Hover Effect */
+.dropdown-menu a:hover {
+  background-color: #071927;
+  opacity: 50%;
+}
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+/* Style for the active link */
+
+
+.active-link {
+  position: relative;
+  border: 1px solid #3af4e1dc;
+  border-radius: 10px;
+  background-color: #62cde5cd !important;
+}
+.logoheader {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+  font-family: 'Montserrat, sans-serif';
+  color: #fbb034; /* Text color */
+  margin-left: -125px;
+}
+
+.logo {
+  margin-right: 20px; /* Adjust spacing between logo and title */
+}
+
+
+
+.bg {
+  /* The image used */
+  background-color:#071927;
+  /* Full height */
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100px;
+  opacity: 99%;
+}
+.nav{
+  color: #fbb034; /* Text color */
+
+  margin-right: -30px;
+}
+
+.nav-link:not(.active-link) {
+  background-color: transparent !important;/* Add your desired background color for inactive links here */;
+}
+.nav-link {
+  display: inline-block;
+  color: #fbb034 !important;
+  font-family: 'Montserrat, sans-serif' !important;
+  transition: color 0.3s;
+}
+
+.nav-link:hover:not(.active-link){
+  color: #dd9d36 !important;
+}

@@ -1,0 +1,78 @@
+
+  <!-- Font Awesome -->
+ 
+  <!-- Custom styles -->
+
+  <body  style="margin-top:  -25px; background-image: url('https://i.ibb.co/b1B1kPJ/background-pass-forg.jpg') ;background-size: cover; background-position: center;">
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div >
+          <div class="card">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Regenerate QR Code</h2>
+                <form #r="ngForm" (submit)="fp(r)">
+                <div class="mb-4">
+                  <label for="Email" class="form-label"> E-mail Address:</label>
+                  <input [disabled]="verificationSuccess || showVerificationCodeInput" type="email" id="Email" placeholder="Enter your email address" class="form-control" required name="email" [(ngModel)]="email" ngModel>
+                  <div *ngIf="!UserExists" class="text-danger mt-2">Please enter a valid address Email</div>
+                  <div *ngIf="verificationAttempted">
+                    <div *ngIf="verificationSuccess; else incorrectCode">
+                      <p style="color: green;">Your email address has been successfully verified</p>
+                      <p style="color: green;" *ngIf="QRCODESUCCESS === true"> QR Code has been regenerated successfully</p>
+                    </div>
+                    
+                    <ng-template #incorrectCode>
+                      <p style="color: red;">Code Invalid, Please try again !</p>
+                    </ng-template>
+                  </div>   
+                </div>
+                <button style="background-color: #72000486; color:white;" type="button" [disabled]="!r.valid || !canSendEmail" *ngIf="!verificationSuccess;" class="btn mb-4" (click)="SendConfirmationEmail()">Send Code</button>
+                <div *ngIf="!canSendEmail">
+                  <p *ngIf="!verificationSuccess">{{ countdownMessage }}</p>
+                </div>
+                <div *ngIf="showVerificationCodeInput" class="mb-4">
+                  <input type="text" class="form-control" [(ngModel)]="verificationInput" [maxlength]="6" name="verificationInput" placeholder="Enter the verification Code">
+                  <button style="background-color: #72000486; color:white;" *ngIf="verificationInput.length === 6 && !verificationSuccess;" type="button" class="btn mt-2" (click)="verifyCode()">Verify Code</button>
+                </div>
+                <div *ngIf="verificationSuccess" class="mb-4">
+                    <button type="button" (click)="QRCODE(email)" [disabled]="QRCODESUCCESS === true || !verificationSuccess" class="btn btn-lg btn-outline-light">Generate QR Code</button>
+
+
+  
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <a routerLink="/login" class="text-decoration-none">Go back to login page</a>
+                  <button style="background-color: #72000486;color:white;" class="btn btn-lg" [disabled]="QRCODESUCCESS === false || !verificationSuccess" type="submit">Confirm</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </body>
+  <!-- Bootstrap Modal for OTP -->
+<div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="authModalLabel" style="color: black; font-weight: bold;" >Two-Factor Authentication</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p style="color: black;">Download 'Google Authenticator' app on your device:</p>
+          <p style="color: black;">Scan this QR code in your Google Authenticator app to link your account to the app:</p>
+          <img [src]="qrCodeImage" alt="QR Code for 2FA" class="img-fluid mb-3" />
+          <div class="form-group mt-3">
+            <label style="color: black;" for="otp">Enter OTP</label>
+            <input style="color: black;" type="text" class="form-control" id="otp" placeholder="Enter the generated OTP Code" [(ngModel)]="otp" name="otp" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="verifyOTP(otp, email)">Verify OTP</button>
+        </div>
+      </div>
+    </div>
+  </div>

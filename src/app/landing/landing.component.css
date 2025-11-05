@@ -1,0 +1,86 @@
+/* Ensure html and body take full height */
+html, body {
+	height: 100%; /* Set height of body and html to 100% */
+	margin: 0; /* Remove default margin */
+	padding: 0; /* Remove any padding */
+  }
+  
+  /* Container styles */
+  .container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh; /* Make sure container takes full viewport height */
+	color: transparent; 
+	background-size: cover; /* Ensure background image covers entire container */
+	font-family: Arial, sans-serif;
+	width: 100%; /* Ensure the container takes full width */
+  }
+  
+  /* Card styles */
+  .card {
+	background: rgba(15, 52, 96, 0.8); /* Slight opacity to see the background */
+	color: #e0e1dd;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	max-width: 400px;
+	width: 100%;
+	animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  .card .icon img {
+	width: 80px;
+	margin-bottom: 15px;
+  }
+  
+  .welcome-message h2 span {
+	color: #ffcc00;
+  }
+  
+  .btn {
+	display: inline-block;
+	margin: 10px auto;
+	padding: 10px 20px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #f05454;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	text-decoration: none;
+  }
+  
+  .btn:hover {
+	background-color: #ff6f61;
+  }
+  
+  .link-btn {
+	background-color: #3c9d9b;
+  }
+  
+  .link-btn:hover {
+	background-color: #51c4c4;
+  }
+  
+  .logout-btn {
+	background-color: #d92027;
+  }
+  
+  .logout-btn:hover {
+	background-color: #ff3f34;
+  }
+  
+  @keyframes fadeIn {
+	from {
+	  opacity: 0;
+	  transform: translateY(20px);
+	}
+	to {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+  }
+  

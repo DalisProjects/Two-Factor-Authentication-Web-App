@@ -1,0 +1,55 @@
+<div style="margin-top:  -25px;"  class="gradient-custom">
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <div>
+        <!-- Login Form   -->
+      
+      <form (submit)="doLogin(f)" #f="ngForm">
+        <h3 style="color: white; margin-bottom: 50px; text-align: center;">Connect to your account!</h3>
+
+           <!-- Email Input   -->
+        <div class="form-group">
+          <label for="email" style="color: white;">Email Address &nbsp;   </label>
+          <input type="email" class="form-control" id="email" placeholder="Type your email address" required name="email" ngModel />
+        </div>
+
+          <!-- Password Input    -->
+        <div class="form-group">
+          <label for="password" style="color: white;" style="margin-right: 40px;">Password    </label>
+          <input type="password" class="form-control" id="password" placeholder="Password" required name="password" ngModel />
+          <div *ngIf="!credentialsvalid" class="text-danger" style="display: none;">Incorrect credentials. Please try again.</div>
+        </div>
+      <div style="margin-bottom: 20px;">
+        <div style="display: inline; color:white;" >If you forgot your password and want to reset it <a routerLink="/forgotpassword" style="text-decoration: none; color: #fbb034;">Click Here!</a></div>
+      </div>
+          <!-- Submit Button   -->
+        <div class="text-center text-lg-start mt-4 pt-2">
+          <button type="submit" class="btn btn-lg" style="padding: 12px 40px; background-color: #3c9d9b; color:rgb(226, 223, 223);">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Bootstrap Modal for OTP  -->
+<div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true" >
+  <div class="modal-dialog"  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="authModalLabel" style="color: white; font-weight: bold;">Two-Factor Authentication</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p style="color: white;">Open your Google Authenticator app and enter the OTP Code linked to your account:</p>
+        <div class="form-group mt-3">
+          <label style="color: white;" for="otp" style="margin-right: 30px;">Enter OTP</label>
+          <input type="text" style="color: white;" class="form-control" id="otp" placeholder="Enter OTP" [(ngModel)]="otp" name="otp" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="verifyOTP(otp, email)">Verify OTP</button>
+      </div>
+    </div>
+  </div>
+</div>
+  

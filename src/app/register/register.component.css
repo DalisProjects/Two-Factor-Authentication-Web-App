@@ -1,0 +1,154 @@
+/* General Styling */
+.gradient-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('/assets/images/logina.jpg')  ;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+ 
+}
+ 
+/* Gradient Overlay for Background */
+.gradient-custom {
+  background: rgba(164, 53, 53, 0.6); /* Semi-transparent black overlay */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-control{
+color: black;
+}
+
+/* Card Styling */
+.card-registration {
+  margin-bottom: 500px;
+  background: #515b6740;
+  color: #e0e1dd;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 10px rgba(8, 75, 119, 0.8); /* Permanent light effect around the form */
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  animation: fadeIn 0.8s ease-in-out;
+  margin: 0 auto;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Typography */
+h3, h6, label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: white
+}
+
+h3 {
+  
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
+/* Form Styling */
+.form-outline {
+  
+  margin-bottom: 20px;
+}
+
+.form-outline input,
+.form-outline select {
+  font-family: 'Roboto', sans-serif;
+  background-color: #d8d2d2; /* Darker background for inputs on hover */
+  border-color:#d8d2d2;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1em;
+  color: white;
+   
+}
+
+.form-outline input:focus,
+.form-outline select:focus {
+  border-color: white;
+  box-shadow: none;
+  outline: none;
+}
+
+.form-outline label {
+  font-size: 14px;
+  color: white;
+}
+
+/* Button Styling */
+button {
+  background-color: #0069d9; /* Lighter blue for buttons */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+button:disabled {
+  background-color: #ebe1e1;;
+  color: #666;
+}
+
+/* Error and Success Messages */
+.text-danger {
+  color: rgb(255, 70, 70);
+  font-weight: bold;
+}
+
+.text-success {
+  color: green;
+  font-weight: bold;
+}
+
+/* Modal Styling */
+.modal-content {
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.modal-header,
+.modal-footer {
+  border: none;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-registration {
+    padding: 15px;
+  }
+
+  .form-outline input,
+  .form-outline select {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
